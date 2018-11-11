@@ -1,1 +1,1 @@
-# Python lession
+# Python lesson
