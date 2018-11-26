@@ -37,24 +37,24 @@
 # *********************************************
 # __getitem__
 # class Fib(object):
-# 	def __getitem__(self, n):
-# 		if isinstance(n, int):
-# 			a, b = 1, 1
-# 			for x in range(n):
-# 				a, b = b, a + b
-# 			return a
-# 		if isinstance(n, slice):
-# 			start = n.start
-# 			stop = n.stop
-# 			if start is None:
-# 				start = 0
-# 			a, b = 1, 1
-# 			L = []
-# 			for x in range(stop):
-# 				if x >= start:
-# 					L.append(a)
-# 				a, b = b, a + b
-# 			return L
+#     def __getitem__(self, n):
+#         if isinstance(n, int):
+#             a, b = 1, 1
+#             for x in range(n):
+#                 a, b = b, a + b
+#             return a
+#         if isinstance(n, slice):
+#             start = n.start
+#             stop = n.stop
+#             if start is None:
+#                 start = 0
+#             a, b = 1, 1
+#             L = []
+#             for x in range(stop):
+#                 if x >= start:
+#                     L.append(a)
+#                 a, b = b, a + b
+#             return L
 # f = Fib()
 # print(f[10])
 # print(f[0:5])
@@ -64,12 +64,12 @@
 
 # *********************************************
 # class Student(object):
-# 	def __init__(self):
-# 		self.name = 'Michael'
-# 	def __getattr__(self, attr):
-# 		if attr == 'age':
-# 			return 50
-# 		raise AttributeError('\'Student\' do not has attribute \'%s\'' % attr)
+#     def __init__(self):
+#         self.name = 'Michael'
+#     def __getattr__(self, attr):
+#         if attr == 'age':
+#             return 50
+#         raise AttributeError('\'Student\' do not has attribute \'%s\'' % attr)
 
 # s = Student()
 # print(s.name)
@@ -79,43 +79,44 @@
 # *********************************************
 # REST API
 # class Chain(object):
-# 	def __init__(self, path=''):
-# 		self._path = path
-# 	def __getattr__(self, path):
-# 		return Chain('%s/%s' % (self._path, path))
-# 	def __str__(self):
-# 		return self._path
-# 	__repr__ = __str__
+#     def __init__(self, path=''):
+#         self._path = path
+#     def __getattr__(self, path):
+#         return Chain('%s/%s' % (self._path, path))
+#     def __str__(self):
+#         return self._path
+#     __repr__ = __str__
 
 # url = Chain().status.user.list
 # print(url)
 
 # *********************************************
 class Chain(object):
-	def __init__(self, path=''):
-		self._path = path
-	def __getattr__(self, path):
-		if path.index('(') and path.index(')'):
-			start = path.index('(')
-			end = path.index(')')
-			return Chain('%s/%s/:%s' % (self._path, path[0 : start], path[start+1 : end - 1]))
-		else:
-			return Chain('%s/%s' % (self._path, path))
-	def __str__(self):
-		return self._path
-	__repr__ = __str__
+    def __init__(self, path=''):
+        self._path = path
+    def __getattr__(self, path):
+        if path.index('(') and path.index(')'):
+            start = path.index('(')
+            end = path.index(')')
+            return Chain('%s/%s/:%s' % (self._path, path[0 : start], path[start+1 : end - 1]))
+        else:
+            return Chain('%s/%s' % (self._path, path))
+    def __str__(self):
+        return self._path
+    __repr__ = __str__
 
 url = Chain().status.users('Michael').list
 print(url)
 
 # __call__
 # 任何类，只需要定义一个__call__()方法，就可以直接对实例进行调用
+# 我们需要判断一个对象是否能被调用，能被调用的对象就是一个Callable对象，比如函数和我们上面定义的带有__call__()的类实例
 # *********************************************
 # class Student(object):
-# 	def __init__(self, name):
-# 		self._name = name
-# 	def __call__(self):
-# 		print('my name is %s' % self._name)
+#     def __init__(self, name):
+#         self._name = name
+#     def __call__(self):
+#         print('my name is %s' % self._name)
 # s = Student('Michael')
 # s()
 
