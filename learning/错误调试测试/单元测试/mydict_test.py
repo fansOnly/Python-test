@@ -1,4 +1,4 @@
-#use/bin/env python3
+#!usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 # 为了编写单元测试，我们需要引入Python自带的unittest模块
