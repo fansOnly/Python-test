@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width"/>
+    <title>手机新浪网</title>
+    <link rel="stylesheet" type="text/css" href="/css/signin/login.css?id=201402241038">
+    <script type="text/javascript" src="https://captcha.weibo.com/static/js/patternLock.min.js"
+            charset="utf-8"></script>
+</head>
+<script type="text/javascript" >
+    var $CONFIG = {};
+    $CONFIG.token = '';
+    $CONFIG.encode_url = 'https%3A%2F%2Fpassport.weibo.cn%2Fsignin%2Flogin%3Fentry%3Dmweibo%26res%3Dwel%26wm%3D3349%26r%3Dhttp%253A%252F%252Fm.weibo.cn%252F%26m%3Db87f518d72481f7dbcd1647c33046e64';
+    $CONFIG.show_app = '0';
+</script>
+<body  >
+<div class="mobileSina">
+    <header class="login_headerModify">
+        <a class="btn_back" href="javascript:history.back(-1)"><i class="icon ico_back"></i></a>
+        <p class="link_regmodify" ><a href="https://passport.sina.cn/signup/signup?r=https%3A%2F%2Fpassport.weibo.cn%2Fsignin%2Flogin%3Fentry%3Dmweibo%26res%3Dwel%26wm%3D3349%26r%3Dhttp%253A%252F%252Fm.weibo.cn%252F%26m%3Db87f518d72481f7dbcd1647c33046e64" id = "register">注册</a></p>
+        <h1>
+            <i id="sinaIcon" class="login_icoModify">手机新浪网</i>
+        </h1>
+        <h2 class="prompt" id="loginSource">登录后进入微博</h2>
+        <h2 class="prompt m_txtF" style="display:none;" id="errorMsg"></h2>
+        <h2 class="prompt m_txtF" style="display:none;" id="needSendCode">请点击<a href="javascript:">获取手机验证码</a>后登录</h2>
+    </header>
+    <section id="beforeLogin" class="login_mainModify">
+        <form action="https://passport.sina.cn/wapclient/succ" method="post">
+            <input type="hidden" name="url" value='https%3A%2F%2Fpassport.weibo.cn%2Fsignin%2Flogin%3Fentry%3Dmweibo%26res%3Dwel%26wm%3D3349%26r%3Dhttp%253A%252F%252Fm.weibo.cn%252F%26m%3Db87f518d72481f7dbcd1647c33046e64' id="loginSuccessAddress"/>
+            <div class="photo_main" style="display:none"  id="lastLogin">
+                <div class="photo_cur">
+                        <div class="user_photo"><img src="" onerror="this.src='/images/signin/defaultAvatar.gif';"/></div>
+                        <span class="user_name" id="lastLoginName"></span>
+                </div>
+            </div>
+            <ul class="info">
+                <li style="display:none" id = 'onlyPasswordWrapper'><input type="password" id="onlyPassword" placeholder="密码"/></li>
+                <li class="account"  id = "loginNamePanel">
+                    <input type="text"  id="loginName" autocapitalize="off" autocorrect="off" placeholder="微博帐号/手机号/邮箱" />
+                </li>
+                <li  id = "loginPasswordPanel"><input type="password" id="loginPassword" placeholder="密码"/></li>
+                <li class="shield" id="dVerifyCode" style="display:none;">
+                    <input type="text" id="loginDVCode" placeholder="微盾"/>
+                </li>
+                <li class="shield verify" id="verifyCodeWrapper" style="display:none;">
+                    <input type="text" id="loginVCode" autocapitalize="off" autocorrect="off" placeholder="验证码"/>
+                    <a href="javascript:;"><img src="" id="verifyCodeImage" style="width:100px; height:40px;"/></a>						
+                </li>
+                <li class="shield verify_m" id= "mVerify" style="display:none;">
+                    <input type="text" placeholder="点击输入验证码" id = "mVerifyCode"/>
+                    <span class="verify_wrap">
+                        <a class="verify_btn" href="javascript:;" id = "mVerifyBtn">获取验证码</a>
+                    </span>
+                </li>
+            </ul>
+            <a href="javascript:;" class="btn_login" id="loginAction">登录</a>
+            <div id="tipLogin" class="bar3rdModify">
+                <a id="lastLoginChangeUser" href="javascript:;">换个帐号</a>
+                <a class="floatR"  href="https://passport.sina.cn/forgot/forgot?entry=wapsso&from=0&r=https%3A%2F%2Fpassport.weibo.cn%2Fsignin%2Flogin%3Fentry%3Dmweibo%26res%3Dwel%26wm%3D3349%26r%3Dhttp%253A%252F%252Fm.weibo.cn%252F%26m%3Db87f518d72481f7dbcd1647c33046e64" id="forgetPassword">忘记密码</a>
+                <a class="floatR" style="display:none" href="javascript:;" id="mobileLogin">用短信验证码登录</a>
+                <a class="floatR" style="display:none" href="javascript:;" id="passwordLogin">用密码登录</a>
+            </div>
+            <div id="otherLoginWrap" class="otherLogin">
+                <div id="otherLogin">社交帐号登录</div>
+                <div id="item" class="item">
+                    <a href='https://passport.weibo.com/othersitebind/authorize?entry=wapsso&amp;site=qq&amp;res=sinacn&amp;wl=2&amp;callback=https%3A%2F%2Fpassport.weibo.cn%2Fsignin%2Flogin%3Fentry%3Dmweibo%26res%3Dwel%26wm%3D3349%26r%3Dhttp%253A%252F%252Fm.weibo.cn%252F%26m%3Db87f518d72481f7dbcd1647c33046e64' class="bar_qq"><i class="icon forQQ"></i></a>
+                </div>
+            </div>
+        </form>
+	</section>
+</div>
+<div class="mobileSina_err" style="left: 30%;top: 23%; display:none" id  = "errorDialog">
+	<div class="ico_cir">
+		<span class="ico_alert"></span>
+		<em class="ico_point"></em>
+	</div>
+	<div class="err_info" id = "errorDialogMsg"></div>
+</div>
+<div class="mobileSina_err btn_err" style="left: 26%;top: 43%; display:none" id = "errorDialogBtn">
+	<div class="err_info" id = "errorDialogBtnMsg"></div>
+	<div class="err_btn" id = "errorBtn"></div>
+</div>
+<!-- jsonp -->
+<script type="text/javascript">
+	var fEntry = '';
+	var fBackUrl = '';
+			fEntry = 'wapsso';
+			
+			fBackUrl = 'https://passport.weibo.cn/signin/login?entry=mweibo&res=wel&wm=3349&r=http%3A%2F%2Fm.weibo.cn%2F&m=b87f518d72481f7dbcd1647c33046e64';
+		
+	
+    (function(w, doc){
+        function encodeFormData(data){
+            var pairs = [], regexp = /%20/g;
+
+            var value;
+            for(var key in data){
+                value = data[key].toString();
+
+                // encodeURIComponent encodes spaces as %20 instead of "+"
+                pairs.push(w.encodeURIComponent(key).replace(regexp, '+') +
+                        '=' + w.encodeURIComponent(value).replace(regexp, '+'));
+            }
+
+            return pairs.join('&');
+        }
+
+        var toString = Object.prototype.toString;
+
+        function isFunction(obj){
+            return toString.call(obj) === '[object Function]';
+        }
+
+        function isNumber(obj){
+            return toString.call(obj) === '[object Number]';
+        }
+
+        function _siteId(prefix){
+            var id = (new Date()).getTime() + Math.floor(Math.random() * 100000);
+            return prefix ? prefix + '' + id : id;
+        }
+
+        var head = doc.getElementsByTagName('head')[0] || doc.documentElement;
+        var baseElement = head.getElementsByTagName('base')[0];
+
+        var READY_STATE_RE = /^(?:loaded|complete|undefined)/;
+
+        var scriptOnLoad = function(node,callback){
+            node.onload = node.onreadystatechange = function(){
+                if(READY_STATE_RE.test(node.readyState)){
+
+                    // only run once and handle memory leak in IE
+                    node.onload = node.onreadystatechange = null;
+
+                    // remove the script to reduce memory leak
+                    head.removeChild(node);
+
+                    node = null;
+                }
+            };
+        };
+
+        function getScript(url, charset){
+            var node = doc.createElement('script');
+            node.src = url;
+
+            if(charset){
+                node.charset = charset;
+            }
+
+            node.async = true;
+
+            scriptOnLoad(node);
+
+            // IE6 Bug: http://bugs.jquery.com/ticket/2709
+            if(baseElement){
+                head.insertBefore(node,baseElement);
+            } else {
+                head.appendChild(node);
+            }
+
+            return node;
+        }
+
+        w.jsonp = function(obj){
+            var jsonpName = obj.jsonp || 'callback';
+            var jsonpCallback = _siteId('jsonpcallback');
+            var jsonpParams = jsonpName + '=' + jsonpCallback;
+
+            var timeout = window.setTimeout(function(){
+                if(isFunction(obj.ontimeout)){
+                    obj.ontimeout();
+                }
+            }, 5000);
+
+            window[jsonpCallback] = function(data){
+                window.clearTimeout(timeout);
+
+                if(isFunction(obj.onsuccess)){
+                    obj.onsuccess(data);
+                }
+
+            };
+
+            var andTag = obj.url.indexOf('?') > 0 ? '&' : '?';
+
+            if(obj.data){
+                getScript(obj.url + andTag + encodeFormData(obj.data) + '&' + jsonpParams, obj.charset);
+            } else {
+                getScript(obj.url + andTag + jsonpParams, obj.charset);
+            }
+
+        };
+
+    })(window, document);
+</script>
+<!-- jsonp end -->
+<!-- ajax -->
+<script type="text/javascript">
+    (function(w, d){
+        var toString = Object.prototype.toString;
+
+        var _ajaxDefaults = {
+            timeout: 5000
+        };
+
+        function isFunction(obj){
+            return toString.call(obj) === '[object Function]';
+        }
+
+        function isNumber(obj){
+            return toString.call(obj) === '[object Number]';
+        }
+
+        function encodeFormData(data){
+            var pairs = [], regexp = /%20/g;
+
+            var value;
+            for(var key in data){
+                value = data[key].toString();
+
+                // encodeURIComponent encodes spaces as %20 instead of "+"
+                pairs.push(w.encodeURIComponent(key).replace(regexp, '+') +
+                        '=' + w.encodeURIComponent(value).replace(regexp, '+'));
+            }
+
+            return pairs.join('&');
+        }
+
+        function _appId(prefix){
+            return prefix ? prefix + '' + (_appId.id ++) : (_appId ++);
+        }
+        _appId.id = 1;
+
+        function _siteId(prefix){
+            var id = (new Date()).getTime() + Math.floor(Math.random() * 100000);
+            return prefix ? prefix + '' + id : id;
+        }
+
+        function htmlEncode(str){
+            return str.replace(/&|<|>|\'|\"/g,function(c){
+                switch(c){
+                    case '&':
+                        c = '&amp;';
+                        break;
+                    case '<':
+                        c = '&lt;';
+                        break;
+                    case '>':
+                        c = '&gt;';
+                        break;
+                    case "'":
+                        c = '&#39;';
+                        break;
+                    case '"':
+                        c = '&quot;';
+                        break;
+                    default:
+                        break;
+                }
+                return c;
+            });
+        }
+
+        var _appendChild = function(child, parent){
+            parent.insertBefore(child, parent.firstChild);
+        };
+
+
+        var addEvent = d.addEventListener ?
+                function(elem, type, callback){
+                    elem.addEventListener(type, callback, false);
+                } : function(elem, type, callback){
+            elem.attachEvent('on' + type, callback);
+        };
+
+        var removeEvent = d.removeEventListener ?
+                function(elem, type, callback){
+                    elem.removeEventListener(type, callback, false);
+                } : function(elem, type, callback){
+            elem.detachEvent('on' + type, callback);
+        };
+        function createXMLHttpRequest(){
+            var request;
+            if(w.XMLHttpRequest){
+                // IE7+, Firefox, Chrome, Opera, Safari
+                request = new XMLHttpRequest();
+            } else {
+                // IE5, IE6
+                request = new ActiveXObject('Miscrosoft.XMLHTTP');
+            }
+            return request;
+        }
+
+        /*
+         * @request {XMLHttpRequest}
+         *
+         */
+        function getResponse(request){
+            switch(request.getResponseHeader('Content-Type')){
+                case 'text/xml' :
+                    return request.responseXML;
+                case 'text/json' :
+                case 'text/javascript' :
+                case 'application/javascript' :
+                case 'application/x-javascript' :
+                    // users should parse the result
+                    return request.responseText;
+                default :
+                    return request.responseText;
+            }
+        }
+
+        /*
+         * @obj {Object} :  url->{string}
+         * type->{String} required get|post
+         * data->{Object} optional
+         * onsuccess->{Function} required
+         * onerror->{Function} optional
+         * ontimeout->{Function} optional
+         * timeout->{Number} optional
+         *
+         */
+        function ajax(obj){
+            var request = createXMLHttpRequest();
+
+            var type = obj.type.toUpperCase();
+
+            // enable timeout
+            var timer;
+            if(isNumber(obj.timeout)){
+                timer = w.setTimeout(function(){
+
+                    request.abort();
+                    request.onreadystatechange = null;
+
+                    if(isFunction(obj.ontimeout)){
+                        obj.ontimeout();
+                    }
+
+                }, obj.timeout || _ajaxDefaults.timeout);
+            }
+
+
+            request.onreadystatechange = function(){
+                if(request.readyState === 4){
+                    // request done, cancel timeout
+                    if(timer) {
+                        w.clearTimeout(timer);
+
+                        timer = null;
+                    }
+
+                    // 200 - 300 : success
+                    // 304 : not modified
+                    // 1223 : IE bug when 204
+                    if(request.status >= 200 && request.status < 300 ||
+                            request.status === 304 || request.status === 1223){
+                        if(isFunction(obj.onsuccess)){
+                            obj.onsuccess(getResponse(request));
+                        }
+                    } else {
+                        if(isFunction(obj.onerror)){
+                            obj.onerror(request.status, request.statusText);
+                        }
+                    }
+                }
+            };
+
+            if(type === 'GET'){
+                var target = obj.url;
+                if(obj.data){
+                    target = obj.url + '?' + encodeFormData(obj.data);
+                }
+                request.open('GET', target, false);
+                request.send(null);
+
+            } else if(type === 'POST'){
+                request.open('POST', obj.url, false);
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                request.send(encodeFormData(obj.data));
+            }
+
+            return request;
+        }
+
+        w.ajax = ajax;
+    })(window, document);
+</script>
+<!-- ajax end -->
+<script type="text/javascript" src="/js/signin/login.js?v=20180224"></script>
+<script type="text/javascript" >
+            </script>
+<script>
+    window.onload = function(){
+
+        document.getElementById('otherLogin').onclick = function(e){
+            if(document.getElementById('item').className.search(/showIcon/) == -1){
+                document.getElementById('item').setAttribute('class','item showIcon');
+            }
+            else{
+                document.getElementById('item').setAttribute('class','item hideIcon');
+            }
+        };
+        if(document.getElementById('lastLogin').style.display !== 'none'){
+            document.getElementById('sinaIcon').style.marginTop = 0 + "rem";
+            document.getElementById('loginAction').style.marginTop = 1.54375 + "rem";
+        }
+    };
+
+    function isLocalStorageNameSupport(){
+        try{
+            var testKey = 'test', storage = window.localStorage;
+            storage.setItem(testKey,'1');
+            storage.removeItem(testKey);
+            return true;
+        } catch (error){
+            return false;
+        }
+    }
+    var userAgent = window.navigator.userAgent;
+    if(userAgent.match(/(iPod|iPhone|iPad)/) && userAgent.match(/Safari/)){
+        if(!~userAgent.indexOf('CriOS')){
+            if(!isLocalStorageNameSupport()){
+				var that  = this;
+                that.errorDialogMsg.innerHTML = '你正在使用“无痕浏览”模式，下次回来需要重新登录哦。';
+                that.errorDialog.style.display = 'block';
+				window.setTimeout(function(){that.errorDialog.style.display = "none"},2000);
+        }
+    }
+  }
+</script>
+</body>
+</html>

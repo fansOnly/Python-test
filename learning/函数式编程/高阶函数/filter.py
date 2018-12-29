@@ -1,4 +1,4 @@
-# !usr/bin/env python3
+# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # ###################################################################################
@@ -47,7 +47,8 @@
 def is_palindrome(n):
     # pass
     # print(n, "".join(list(str(n))[::-1]), n == int("".join(list(str(n))[::-1])))
-    return n == int("".join(list(str(n))[::-1]))
+    # return n == int("".join(list(str(n))[::-1]))
+    return str(n) == str(n)[::-1]
 
 output = filter(is_palindrome, range(1, 10))
 print('1~10:', list(output))
